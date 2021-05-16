@@ -106,10 +106,10 @@ public class AnimeSpecific extends AppCompatActivity {
             else{
                 button.setText(R.string.Adauga);
                 db.setNeAdaugat(anime.getName());
-                textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
+                db.setEp(anime.getName(),0);
                 textView.addTextChangedListener(new TextWatcher() {
                     public void afterTextChanged(Editable s) {   //Convert the Text to String
-                        textView.setText("");
+                        textView.setText("0");
                     }
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                         // Does not do any thing in this case

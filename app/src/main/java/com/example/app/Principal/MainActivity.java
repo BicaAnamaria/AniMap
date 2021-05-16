@@ -98,6 +98,8 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onAnime
         adapter.notifyItemChanged(position);
         Intent intent = new Intent(this, AnimeSpecific.class);
         startActivity(intent);
+        finish();
+        overridePendingTransition(0, 0);
         position =anime.get(position).getId();
     }
     public static int getPos(){
