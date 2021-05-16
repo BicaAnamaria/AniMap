@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">App</string>
+    <string name="app_cautare">Cautare</string>
+    <string name="app_lista">Lista</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Parola</string>
+    <string name="prompt_password1">Repetare Parola</string>
+    <string name="prompt_user">Username</string>
+    <string name="invalid_username">Username Invalid</string>
+    <string name="invalid_password">Parola trebuie sa aiba minim 5 caractere</string>
+    <string name="login_failed">"Login Nereusit"</string>
+    <string name="inapoi">"Inapoi"</string>
+    <string name="cautare">"Cautare"</string>
+    <string name="Adauga">Adauga</string>
+    <string name="Adaugat">Adaugat</string>
+</resources>
