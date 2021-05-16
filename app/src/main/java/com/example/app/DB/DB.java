@@ -111,7 +111,7 @@ public class DB extends SQLiteOpenHelper {
         Cursor c = db.rawQuery("SELECT * FROM ANIME ", null);
         if (c.moveToFirst()) {
 
-            db.execSQL("UPDATE ANIME SET nr_episoade= "+ R.drawable.bokunohero +" WHERE ID in (10)" );
+            db.execSQL("UPDATE ANIME SET imagine1= "+ R.drawable.bokunohero +" WHERE ID in (10)" );
         }
         c.close();
     }
@@ -211,7 +211,7 @@ public class DB extends SQLiteOpenHelper {
     public List<Anime> getGenuri(String gen){
         List<Anime> anime =new ArrayList<>();
         SQLiteDatabase DB = this.getReadableDatabase();
-        String sql = "SELECT * FROM ANIME WHERE GEN ='" + gen +"'";
+        String sql = "SELECT * FROM ANIME WHERE GEN ='" + gen +"' ORDER BY NUME";
         Cursor a = DB.rawQuery(sql, null);
         while(a.moveToNext()){
             Anime an;

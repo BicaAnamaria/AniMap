@@ -86,7 +86,6 @@ public class AnimeSpecific extends AppCompatActivity {
             if(!anime.isAdaugat()) {
                 String text = editText.getText().toString();
                 db.setEp(anime.getName(),Integer.parseInt(text));
-                editText.setText(text, TextView.BufferType.EDITABLE);
                 button.setText(R.string.Adaugat);
                 db.setAdaugat(anime.getName());
                 textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
@@ -133,6 +132,10 @@ public class AnimeSpecific extends AppCompatActivity {
         myText4.setText(String.format("Studio : %s", anime.getStudio()));
         listView.setText(String.valueOf(anime.getEp_curent()));
         textView.setText(String.format("%s", anime.getEp_curent()));
+        if(!anime.isAdaugat() ){
+            db.setEp(anime.getName(),0);
+            textView.setText(String.format("%s", anime.getEp_curent()));
+        }
 
         if(anime.getNb_episode()!=0) {
             listView.setText(String.format("/%s", anime.getNb_episode()));
@@ -143,10 +146,7 @@ public class AnimeSpecific extends AppCompatActivity {
 
         ratingBar.setRating(anime.getRating());
 
-        if(anime.isAdaugat() == false){
-            db.setEp(anime.getName(),0);
-            textView.setText(String.format("%s", anime.getEp_curent()));
-        }
+
 
 
         bnv.setOnNavigationItemSelectedListener(item -> {

@@ -2,6 +2,8 @@ package com.example.app.Cautare;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,7 +28,7 @@ public class AS2 extends AppCompatActivity {
     TextView myText1, myText2, myText3, myText4;
     ImageView myimg;
     RatingBar ratingBar;
-    TextView listView;
+    TextView listView, textView;
     EditText editText;
     FloatingActionButton floatingActionButton;
     Button button, button1;
@@ -56,24 +58,48 @@ public class AS2 extends AppCompatActivity {
         this.editText = findViewById(R.id.editTextTextPersonName5);
         floatingActionButton = findViewById(R.id.floatingActionButton7);
         this.button1 = findViewById(R.id.button7);
+        this.textView = findViewById(R.id.textView);
         button = findViewById(R.id.button2);
+
+        editText.setOnClickListener(v -> {
+            textView.setText("");
+
+        });
+
+
+        editText.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                textView.setText("");
+                return false;
+            }
+        });
+
         if(!anime.isAdaugat()){
             button.setText(R.string.Adauga);
         }
         else{
             button.setText(R.string.Adaugat);
         }
+
         button.setOnClickListener(v -> {
             if(!anime.isAdaugat()) {
+                String text = editText.getText().toString();
+                db.setEp(anime.getName(),Integer.parseInt(text));
                 button.setText(R.string.Adaugat);
                 db.setAdaugat(anime.getName());
+                textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
             }
             else{
                 button.setText(R.string.Adauga);
                 db.setNeAdaugat(anime.getName());
+                textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
             }
 
         });
+
+
+
 
         button1.setOnClickListener(v -> {
             float r = ratingBar.getRating() ;
@@ -81,10 +107,9 @@ public class AS2 extends AppCompatActivity {
 
 
         });
-
         floatingActionButton.setOnClickListener(v -> {
 
-            Intent i1 = new Intent(getApplicationContext(), RezultateCautare.class);
+            Intent i1 = new Intent(getApplicationContext(), Cautare.class);
             startActivity(i1);
             finish();
             overridePendingTransition(0, 0);
@@ -93,19 +118,34 @@ public class AS2 extends AppCompatActivity {
 
 
 
+        if(!anime.isAdaugat()){
+            listView.setText(String.valueOf(anime.getEp_curent()), TextView.BufferType.EDITABLE);
+        }
+        else{
+            listView.setText(String.valueOf(anime.getEp_curent()));
+        }
+
         myText1.setText(String.format("%s%s", "Nume : ", anime.getName()));
         myimg.setImageResource( anime.getImg());
         myText2.setText(String.format("Descriere : %s", anime.getDescription()));
         myText3.setText(String.format("Gen : %s", anime.getGen()));
         myText4.setText(String.format("Studio : %s", anime.getStudio()));
-        listView.setText(String.format("/%s", anime.getNb_episode()));
+        listView.setText(String.valueOf(anime.getEp_curent()));
+        textView.setText(String.format("%s", anime.getEp_curent()));
+        if(!anime.isAdaugat() ){
+            db.setEp(anime.getName(),0);
+            textView.setText(String.format("%s", anime.getEp_curent()));
+        }
+
         if(anime.getNb_episode()!=0) {
             listView.setText(String.format("/%s", anime.getNb_episode()));
         }
         else{
             listView.setText(String.format("/%s", "?"));
         }
+
         ratingBar.setRating(anime.getRating());
+
 
         bnv.setOnNavigationItemSelectedListener(item -> {
 
