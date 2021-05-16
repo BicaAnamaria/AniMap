@@ -2,6 +2,8 @@ package com.example.app.Principal;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -88,15 +90,39 @@ public class AnimeSpecific extends AppCompatActivity {
                 db.setEp(anime.getName(),Integer.parseInt(text));
                 button.setText(R.string.Adaugat);
                 db.setAdaugat(anime.getName());
-                textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
+                textView.addTextChangedListener(new TextWatcher() {
+                    public void afterTextChanged(Editable s) {   //Convert the Text to String
+                        textView.setText(text);
+                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // Does not do any thing in this case
+                    }
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Does not do any thing in this case
+                    }
+                });
+                //textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
             }
             else{
                 button.setText(R.string.Adauga);
                 db.setNeAdaugat(anime.getName());
                 textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
+                textView.addTextChangedListener(new TextWatcher() {
+                    public void afterTextChanged(Editable s) {   //Convert the Text to String
+                        textView.setText("");
+                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // Does not do any thing in this case
+                    }
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Does not do any thing in this case
+                    }
+                });
             }
 
         });
+
+
 
 
 
@@ -132,10 +158,15 @@ public class AnimeSpecific extends AppCompatActivity {
         myText4.setText(String.format("Studio : %s", anime.getStudio()));
         listView.setText(String.valueOf(anime.getEp_curent()));
         textView.setText(String.format("%s", anime.getEp_curent()));
-        if(!anime.isAdaugat() ){
+
+       if(!anime.isAdaugat() ){
             db.setEp(anime.getName(),0);
             textView.setText(String.format("%s", anime.getEp_curent()));
         }
+       else{
+           db.setEp(anime.getName(),anime.getEp_curent());
+           textView.setText(String.format("%s", anime.getEp_curent()));
+       }
 
         if(anime.getNb_episode()!=0) {
             listView.setText(String.format("/%s", anime.getNb_episode()));

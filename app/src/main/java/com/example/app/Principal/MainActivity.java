@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements MyAdapter.onAnime
 
         anime = db.getAnime();
 
-        adapter = new MyAdapter( anime,this);//l,l1,l6,l2,l3,l4,l5,l7,l8,this);
+        adapter = new MyAdapter( anime,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new GridLayoutManager(this,2));
 

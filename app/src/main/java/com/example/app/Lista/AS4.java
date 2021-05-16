@@ -2,6 +2,8 @@ package com.example.app.Lista;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
@@ -89,7 +91,17 @@ public class AS4 extends AppCompatActivity {
                 db.setEp(anime.getName(),Integer.parseInt(text));
                 button.setText(R.string.Adaugat);
                 db.setAdaugat(anime.getName());
-                textView.setText(String.format("%s",String.valueOf(anime.getEp_curent())));
+                textView.addTextChangedListener(new TextWatcher() {
+                    public void afterTextChanged(Editable s) {   //Convert the Text to String
+                        textView.setText(text);
+                    }
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                        // Does not do any thing in this case
+                    }
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+                        // Does not do any thing in this case
+                    }
+                });
             }
             else{
                 button.setText(R.string.Adauga);
@@ -110,7 +122,7 @@ public class AS4 extends AppCompatActivity {
         });
         floatingActionButton.setOnClickListener(v -> {
 
-            Intent i1 = new Intent(getApplicationContext(), Cautare.class);
+            Intent i1 = new Intent(getApplicationContext(), ListaMea.class);
             startActivity(i1);
             finish();
             overridePendingTransition(0, 0);
