@@ -25,17 +25,8 @@ public  class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     private List<Anime> anime;
     private onAnimeListener onAnimeListener;
 
-    public MyAdapter(List<Anime> anime, onAnimeListener onAnimeListener) {//List<String> s1, List<String> s2, List<Integer> img, List<Integer> i, List<String> s3, List<String> s4,List<Float> s5,List<Integer> ad, List<Integer> ep, onAnimeListener onAnimeListener){
-       /* this.context=ct;
-        this.data1 = s1;
-        this.data2=s2;
-        this.data3=s3;
-        this.data4=s4;
-        this.images=img;
-        this.f=s5;
-        this.nr=i;
-        this.ad = ad;
-        this.ep = ep;*/
+    public MyAdapter(List<Anime> anime, onAnimeListener onAnimeListener) {
+
         this.anime = anime;
         this.onAnimeListener = onAnimeListener;
     }

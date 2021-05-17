@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.app.Adapters.MyAdapter;
-import com.example.app.Adapters.MyAdapter2;
 import com.example.app.Anime;
 import com.example.app.Cautare.Cautare;
 import com.example.app.DB.DB;

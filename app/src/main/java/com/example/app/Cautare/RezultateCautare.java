@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -14,11 +13,9 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app.Adapters.MyAdapter;
-import com.example.app.Adapters.MyAdapter2;
 import com.example.app.Anime;
 import com.example.app.DB.DB;
 import com.example.app.Lista.Lista;
-import com.example.app.Principal.AnimeSpecific;
 import com.example.app.Principal.MainActivity;
 import com.example.app.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;

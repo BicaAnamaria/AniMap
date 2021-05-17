@@ -175,13 +175,16 @@ public class DB extends SQLiteOpenHelper {
         c.close();
         return nr;
     }
+
+
+
     public List<Integer> getNrEp(){
         SQLiteDatabase db = this.getReadableDatabase();
         List<Integer> l = new ArrayList<>();
         Cursor c = db.rawQuery("SELECT * FROM ANIME WHERE ADAUGAT = 1", null);
 
         while (c.moveToNext()) {
-            int k = c.getInt(3);
+            int k = c.getInt(10);
             System.out.println(k);
             l.add(k);
         }
